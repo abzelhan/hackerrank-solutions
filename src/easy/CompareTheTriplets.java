@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
+/*
+  Link to problem: https://www.hackerrank.com/challenges/compare-the-triplets/problem
+ */
 public class CompareTheTriplets {
 
     // Complete the compareTriplets function below.
@@ -30,6 +33,13 @@ public class CompareTheTriplets {
         return Arrays.asList(aliceScore, bobScore);
     }
 
+    /*
+        Sample input:
+        5 6 7
+        3 6 10
+        Sample output:
+        1 1
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
