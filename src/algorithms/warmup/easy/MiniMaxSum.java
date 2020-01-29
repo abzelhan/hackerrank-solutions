@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 /*
-    URL: https://www.hackerrank.com/challenges/mini-max-sum/problem
+    URL: https://www.hackerrank.com/challenges/mini-max-sum/problem.
  */
 public class MiniMaxSum {
 
