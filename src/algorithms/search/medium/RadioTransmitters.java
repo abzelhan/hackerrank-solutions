@@ -8,30 +8,41 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/hackerland-radio-transmitters/problem
+ */
 public class RadioTransmitters {
 
     // Complete the hackerlandRadioTransmitters function below.
     static int hackerlandRadioTransmitters(int[] x, int k) {
-        if (x.length == 1 && k == 1) return 1;
+        Arrays.sort(x);
 
-        //first step is to sort all houses by bubble sort
-        for (int i = 0; i < x.length; i++) {
-            for (int j = 0; j < x.length; j++) {
-                if (i != j && x[i] < x[j]) {
-                    int temp = x[j];
-                    x[j] = x[i];
-                    x[i] = temp;
-                }
-            }
+        int numOfTransmitters = 0;
+        int i = 0;
+        int n = x.length;
+
+        while (i < n) {
+            numOfTransmitters++;
+            int loc = x[i] + k;
+            while (i < n && x[i] <= loc) i++;
+            loc = x[--i] + k;
+            while (i < n && x[i] <= loc) i++;
         }
 
-        return 0;
+        return numOfTransmitters;
     }
-
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        5 1
+        1 2 3 4 5
+        Output:
+        2
+     */
     public static void main(String[] args) throws IOException {
+
         String[] nk = scanner.nextLine().split(" ");
 
         int n = Integer.parseInt(nk[0]);
