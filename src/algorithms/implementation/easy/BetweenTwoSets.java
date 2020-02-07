@@ -11,60 +11,10 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+/*
+    URL: https://www.hackerrank.com/challenges/between-two-sets/problem
+ */
 public class BetweenTwoSets {
-
-    public static int getTotalX2(List<Integer> a, List<Integer> b) {
-
-        for (Integer b1 : b) {
-            for (Integer a1 : a) {
-                if (b1 % a1 != 0) return 0;
-            }
-        }
-
-
-        Integer max = null;
-        for (Integer b1 : b) {
-            if (max == null || (max != null && max < b1)) {
-                max = b1;
-            }
-        }
-
-        int counter = 0;
-
-        for (int i = 2; i <= max; i++) {
-            int aCount = 0;
-            int bCount = 0;
-
-            for (Integer a1 : a) {
-
-                if(a1 == i) {
-                    aCount++;
-                    continue;
-                } else if ((a1 < i) && (i % a1 != 0)
-                        ||
-                        (a1 > i) && (a1 % i != 0)){
-                    aCount = 0;
-                    break;
-                }
-
-                aCount++;
-            }
-
-            for (Integer b1 : b) {
-                if ((b1 < i) && (i % b1 != 0)
-                        ||
-                        (b1 > i) && (b1 % i != 0)) break;
-                bCount++;
-            }
-
-            if(aCount == a.size() && bCount == b.size()) {
-                counter++;
-            }
-        }
-
-        return counter;
-    }
-
 
     public static int getTotalX(List<Integer> a, List<Integer> b) {
         int x=1,r=0,j=0,count=0;
@@ -96,7 +46,14 @@ public class BetweenTwoSets {
         return count;
     }
 
-
+    /*
+        Input:
+        2 3
+        2 4
+        16 32 96
+        Output:
+        3
+     */
     public static void main(String[] args) throws IOException {
 
         System.out.println(2 % 1);
