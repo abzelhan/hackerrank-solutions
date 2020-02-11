@@ -43,8 +43,8 @@ public class BreakingTheRecords {
 
     /*
         Input:
-        10
-        3 4 21 36 10 28 35 5 24 42
+         10
+         3 4 21 36 10 28 35 5 24 42
         Output:
         4 0
      */

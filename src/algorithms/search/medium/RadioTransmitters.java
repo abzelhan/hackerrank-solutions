@@ -24,9 +24,13 @@ public class RadioTransmitters {
         while (i < n) {
             numOfTransmitters++;
             int loc = x[i] + k;
-            while (i < n && x[i] <= loc) i++;
+            while (i < n && x[i] <= loc){
+                i++;
+            }
             loc = x[--i] + k;
-            while (i < n && x[i] <= loc) i++;
+            while (i < n && x[i] <= loc){
+                i++;
+            }
         }
 
         return numOfTransmitters;
