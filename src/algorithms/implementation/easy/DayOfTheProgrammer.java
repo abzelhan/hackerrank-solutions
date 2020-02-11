@@ -12,6 +12,9 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+/*
+    URL: https://www.hackerrank.com/challenges/day-of-the-programmer/problem
+ */
 public class DayOfTheProgrammer {
 
     // Complete the dayOfProgrammer function below.
@@ -37,6 +40,12 @@ public class DayOfTheProgrammer {
         return result;
     }
 
+    /*
+        Input:
+        2017
+        Output:
+        13.09.2017
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
