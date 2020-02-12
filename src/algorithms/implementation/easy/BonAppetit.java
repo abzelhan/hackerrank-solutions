@@ -12,6 +12,9 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+/*
+    URL: https://www.hackerrank.com/challenges/bon-appetit/problem
+ */
 public class BonAppetit {
 
     // Complete the bonAppetit function below.
@@ -27,6 +30,15 @@ public class BonAppetit {
 
     }
 
+    /*
+        Input:
+        4 1
+        3 10 2 9
+        7
+        Output:
+        Bon Appetit
+
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
