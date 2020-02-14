@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/sock-merchant/problem
+ */
 public class SockMerchant {
 
     static int sockMerchant(int n, int[] ar) {
@@ -31,6 +34,13 @@ public class SockMerchant {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        9
+        10 20 20 10 10 30 50 10 20
+        Output:
+        3
+     */
     public static void main(String[] args) throws IOException {
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -50,4 +60,5 @@ public class SockMerchant {
         System.out.println(result);
         scanner.close();
     }
+    
 }
