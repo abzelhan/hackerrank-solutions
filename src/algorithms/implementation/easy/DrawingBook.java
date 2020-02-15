@@ -6,6 +6,9 @@ import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/drawing-book/problem
+ */
 public class DrawingBook {
 
     static int pageCount(int n, int p) {
@@ -18,6 +21,13 @@ public class DrawingBook {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        6
+        5
+        Output:
+        1
+     */
     public static void main(String[] args) throws IOException {
         int n = scanner.nextInt();
 
