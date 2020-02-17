@@ -60,5 +60,5 @@ public class SockMerchant {
         System.out.println(result);
         scanner.close();
     }
-    
+
 }

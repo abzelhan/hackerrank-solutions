@@ -1,12 +1,7 @@
 package algorithms.implementation.easy;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.io.IOException;
+import java.util.Scanner;
 
 /*
     URL: https://www.hackerrank.com/challenges/counting-valleys/problem
@@ -17,12 +12,10 @@ public class CountingValleys {
     static int countingValleys(int n, String s) {
         int valleyCount = 0;
         int seaLevel = 0;
-
         boolean belowSeaLevel = false;
 
         for (int i = 0; i < n; i++) {
             char step = s.charAt(i);
-
             if (step == 'U') {
                 ++seaLevel;
             } else if (step == 'D') {
@@ -36,11 +29,7 @@ public class CountingValleys {
             } else if (seaLevel == 0 && belowSeaLevel) {
                 valleyCount++;
             }
-
-
-
         }
-
         return valleyCount;
     }
 
