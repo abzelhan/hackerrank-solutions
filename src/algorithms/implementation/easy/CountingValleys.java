@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/counting-valleys/problem
+ */
 public class CountingValleys {
 
     // Complete the countingValleys function below.
@@ -43,6 +46,13 @@ public class CountingValleys {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        8
+        UDDDUDUU
+        Output:
+        1
+     */
     public static void main(String[] args) throws IOException {
 
         int n = scanner.nextInt();
