@@ -6,6 +6,9 @@ import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/electronics-shop/problem
+ */
 public class ElectronicsShop {
 
     static int getMoneySpent(int[] keyboards, int[] drives, int b) {
@@ -37,6 +40,14 @@ public class ElectronicsShop {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        10 2 3
+        3 1
+        5 2 8
+        Output:
+        9
+     */
     public static void main(String[] args) throws IOException {
 
         String[] bnm = scanner.nextLine().split(" ");
