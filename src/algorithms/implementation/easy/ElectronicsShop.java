@@ -1,10 +1,7 @@
 package algorithms.implementation.easy;
 
-import java.io.*;
-import java.math.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
+import java.io.IOException;
+import java.util.Scanner;
 
 /*
     URL: https://www.hackerrank.com/challenges/electronics-shop/problem
@@ -20,7 +17,7 @@ public class ElectronicsShop {
             for (int j = 0; j < drives.length; j++) {
                 int drivePrice = drives[j];
                 int totalSum = keyboardPrice + drivePrice;
-                if (totalSum > maxAmount && totalSum <=b) {
+                if (totalSum > maxAmount && totalSum <= b) {
                     maxAmount = totalSum;
                 }
                 if (minAmount == -1) {
@@ -49,17 +46,11 @@ public class ElectronicsShop {
         9
      */
     public static void main(String[] args) throws IOException {
-
         String[] bnm = scanner.nextLine().split(" ");
-
         int b = Integer.parseInt(bnm[0]);
-
         int n = Integer.parseInt(bnm[1]);
-
         int m = Integer.parseInt(bnm[2]);
-
         int[] keyboards = new int[n];
-
         String[] keyboardsItems = scanner.nextLine().split(" ");
 
         for (int keyboardsItr = 0; keyboardsItr < n; keyboardsItr++) {
@@ -76,14 +67,8 @@ public class ElectronicsShop {
             drives[drivesItr] = drivesItem;
         }
 
-        /*
-         * The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
-         */
-
         int moneySpent = getMoneySpent(keyboards, drives, b);
-
         System.out.println(moneySpent);
-
         scanner.close();
     }
 }
