@@ -1,13 +1,11 @@
 package algorithms.implementation.easy;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.io.IOException;
+import java.util.Scanner;
 
+/*
+    URL: https://www.hackerrank.com/challenges/cats-and-a-mouse/problem
+ */
 public class CatsAndMouse {
 
     // Complete the catAndMouse function below.
@@ -20,15 +18,20 @@ public class CatsAndMouse {
         } else if (catBDiff < catADiff) {
             return "Cat B";
         }
-            return "Mouse C";
-
-
-
-
+        return "Mouse C";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        2
+        1 2 3
+        1 3 2
+        Output:
+        Cat B
+        Mouse C
+     */
     public static void main(String[] args) throws IOException {
 
         int q = scanner.nextInt();
@@ -46,7 +49,6 @@ public class CatsAndMouse {
             String result = catAndMouse(x, y, z);
             System.out.println(result);
         }
-
 
         scanner.close();
     }
