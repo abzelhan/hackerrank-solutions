@@ -12,7 +12,18 @@ public class CatsAndMouse {
 
     // Complete the catAndMouse function below.
     static String catAndMouse(int x, int y, int z) {
-        if(x < z)
+        int catADiff = x < z ? z - x : x - z;
+        int catBDiff = y < z ? z - y : y - z;
+
+        if (catADiff < catBDiff) {
+            return "Cat A";
+        } else if (catBDiff < catADiff) {
+            return "Cat B";
+        }
+            return "Mouse C";
+
+
+
 
     }
 
@@ -21,6 +32,7 @@ public class CatsAndMouse {
     public static void main(String[] args) throws IOException {
 
         int q = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int qItr = 0; qItr < q; qItr++) {
             String[] xyz = scanner.nextLine().split(" ");
