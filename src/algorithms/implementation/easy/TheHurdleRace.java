@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/the-hurdle-race/problem
+ */
 public class TheHurdleRace {
 
     // Complete the hurdleRace function below.
@@ -25,6 +28,13 @@ public class TheHurdleRace {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+    Input:
+    5 4
+    1 6 3 5 2
+    Output:
+    2
+     */
     public static void main(String[] args) throws IOException {
         String[] nk = scanner.nextLine().split(" ");
 
