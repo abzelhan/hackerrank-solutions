@@ -8,6 +8,9 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/*
+    URL: https://www.hackerrank.com/challenges/designer-pdf-viewer/problem
+ */
 public class PDFViewer {
 
     // Complete the designerPdfViewer function below.
@@ -31,6 +34,13 @@ public class PDFViewer {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        1 3 1 3 1 4 1 3 2 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 7
+        zaba
+        Output:
+        28
+     */
     public static void main(String[] args) throws IOException {
 
         int[] h = new int[26];
