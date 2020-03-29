@@ -1,13 +1,11 @@
 package algorithms.implementation.easy;
 
-import java.io.*;
-        import java.math.*;
-        import java.security.*;
-        import java.text.*;
-        import java.util.*;
-        import java.util.concurrent.*;
-        import java.util.regex.*;
+import java.io.IOException;
+import java.util.Scanner;
 
+/*
+URL: https://www.hackerrank.com/challenges/utopian-tree/problem
+ */
 public class UtopianTree {
 
     // Complete the utopianTree function below.
@@ -18,7 +16,7 @@ public class UtopianTree {
             if (i % 2 == 0) {
                 height++;
             } else {
-                height*=2;
+                height *= 2;
             }
         }
 
@@ -27,6 +25,17 @@ public class UtopianTree {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /*
+        Input:
+        3
+        0
+        1
+        4
+        Output:
+        1
+        2
+        7
+     */
     public static void main(String[] args) throws IOException {
         int t = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
