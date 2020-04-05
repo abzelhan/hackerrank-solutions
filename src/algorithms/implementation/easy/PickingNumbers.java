@@ -1,52 +1,47 @@
 package algorithms.implementation.easy;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
 import static java.util.stream.Collectors.toList;
 
 public class PickingNumbers {
 
+
     public static int pickingNumbers(List<Integer> a) {
-        ArrayList<Integer> nums = new ArrayList<>();
         a.sort(Integer::compareTo);
-        for (int i = 0; i < a.size(); i++) {
-            Integer num = a.get(i);
-            boolean canPick = false;
-            for (int j = 0; j < a.size(); j++) {
+        Map<Integer, Integer> map = new HashMap<>();
 
-                if(i != j)
-                    if (Math.abs(num - a.get(j)) <= 1) {
-                        canPick = true;
-                        break;
-                    }
+        for (Integer num : a) {
+            if (map.containsKey(num)) {
+                map.put(num, Integer.valueOf(map.get(num).intValue() + 1));
+            } else {
+                map.put(num, 1);
             }
-
-            if(canPick) {
-                if (nums.size() == 0) nums.add(num);
-                else {
-                    for (Integer validNum : nums) {
-                        if (!(Math.abs(validNum - num) <= 1)) {
-                            canPick = false;
-                            break;
-                        }
-                    }
-                    if (canPick) {
-                        nums.add(num);
-                    }
-                }
-            }
-
         }
 
-        return nums.size();
+        int max = 0;
+
+        List<Integer> nums = map.entrySet().stream().map(Map.Entry::getKey).collect(toList());
+        nums.sort(Integer::compareTo);
+
+        for (int i = 0; i < nums.size(); i++) {
+            if ((i < nums.size() -1 ) && Math.abs(nums.get(i) - nums.get(i + 1)) <= 1) {
+                int length = map.get(nums.get(i)) + map.get(nums.get(i + 1));
+                if (length > max) {
+                    max = length;
+                }
+            } else if (map.get(nums.get(i)) > max) {
+                max = map.get(nums.get(i));
+            }
+        }
+
+        return max;
     }
 
     public static void main(String[] args) throws IOException {
