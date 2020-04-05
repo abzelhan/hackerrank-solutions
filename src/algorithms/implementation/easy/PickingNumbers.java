@@ -10,8 +10,10 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
+/*
+    URL: https://www.hackerrank.com/challenges/picking-numbers/problem
+ */
 public class PickingNumbers {
-
 
     public static int pickingNumbers(List<Integer> a) {
         a.sort(Integer::compareTo);
@@ -31,7 +33,7 @@ public class PickingNumbers {
         nums.sort(Integer::compareTo);
 
         for (int i = 0; i < nums.size(); i++) {
-            if ((i < nums.size() -1 ) && Math.abs(nums.get(i) - nums.get(i + 1)) <= 1) {
+            if ((i < nums.size() - 1) && Math.abs(nums.get(i) - nums.get(i + 1)) <= 1) {
                 int length = map.get(nums.get(i)) + map.get(nums.get(i + 1));
                 if (length > max) {
                     max = length;
@@ -44,6 +46,13 @@ public class PickingNumbers {
         return max;
     }
 
+    /*
+        Input:
+        6
+        1 2 2 3 1 2
+        Output:
+        5
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
