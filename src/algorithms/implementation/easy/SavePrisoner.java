@@ -18,15 +18,20 @@ import java.util.Scanner;
 public class SavePrisoner {
 
     static int saveThePrisoner(int n, int m, int s) {
+        int a = s+m-1;
+        if(a>n){
+            if(a%n==0){
+                return n;
+            }
+            return a%n;
+        }
 
-
+        return a;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
         int t = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
@@ -41,11 +46,8 @@ public class SavePrisoner {
 
             int result = saveThePrisoner(n, m, s);
 
-            bufferedWriter.write(String.valueOf(result));
-            bufferedWriter.newLine();
+            System.out.println(result);
         }
-
-        bufferedWriter.close();
 
         scanner.close();
     }
