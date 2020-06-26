@@ -1,5 +1,6 @@
 package algorithms.implementation.medium;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -80,11 +81,14 @@ public class ClimbingTheLeaderboard {
 //    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner("7\n" +
-                "100 100 50 40 40 20 10\n" +
-                "4\n" +
-                "5 25 50 120");
+//        Scanner scanner = new Scanner("7\n" +
+//                "100 100 50 40 40 20 10\n" +
+//                "4\n" +
+//                "5 25 50 120");
+
+        Scanner scanner = new Scanner(new File("input06.txt"));
         int scoresCount = scanner.nextInt();
+
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         int[] scores = new int[scoresCount];
