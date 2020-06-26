@@ -3,6 +3,19 @@ package algorithms.implementation.easy;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * URL: https://www.hackerrank.com/challenges/circular-array-rotation
+ * Input:
+ * 3 2 3
+ * 1 2 3
+ * 0
+ * 1
+ * 2
+ * Output:
+ * 2
+ * 3
+ * 1
+ */
 public class CircularArrayRotation {
 
     static int[] circularArrayRotation(int[] a, int k, int[] queries) {
@@ -17,7 +30,7 @@ public class CircularArrayRotation {
         }
 
         for (int i = 0; i < queries.length; i++) {
-            queries[i]=shiftedArray[queries[i]];
+            queries[i] = shiftedArray[queries[i]];
         }
 
         return queries;
@@ -65,4 +78,5 @@ public class CircularArrayRotation {
         System.out.println("\n");
         scanner.close();
     }
+    
 }
