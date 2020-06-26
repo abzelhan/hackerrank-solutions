@@ -1,23 +1,31 @@
 package algorithms.implementation.easy;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class CircularArrayRotation {
 
-    // Complete the circularArrayRotation function below.
     static int[] circularArrayRotation(int[] a, int k, int[] queries) {
+        int[] shiftedArray = new int[a.length];
 
+        for (int i = 0; i < a.length; i++) {
+            if (i + k < a.length) {
+                shiftedArray[i + k] = a[i];
+            } else if (i + k >= a.length) {
+                shiftedArray[(i + k) % a.length] = a[i];
+            }
+        }
 
+        for (int i = 0; i < queries.length; i++) {
+            queries[i]=shiftedArray[queries[i]];
+        }
+
+        return queries;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
         String[] nkq = scanner.nextLine().split(" ");
 
         int n = Integer.parseInt(nkq[0]);
@@ -47,17 +55,14 @@ public class CircularArrayRotation {
         int[] result = circularArrayRotation(a, k, queries);
 
         for (int i = 0; i < result.length; i++) {
-            bufferedWriter.write(String.valueOf(result[i]));
+            System.out.println(result[i]);
 
             if (i != result.length - 1) {
-                bufferedWriter.write("\n");
+                System.out.println("\n");
             }
         }
 
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
+        System.out.println("\n");
         scanner.close();
     }
 }
