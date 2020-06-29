@@ -9,45 +9,50 @@ import java.util.stream.Collectors;
 
 public class ClimbingTheLeaderboard {
 
-    private static int binarySearch(List<Integer> leaderboard, int aliceScore, int begin, int end) {
-        if (end >= begin) {
-            int middle = begin + (end - begin) / 2;
-
-            int left = middle - 1;
-            int right = middle + 1;
-            boolean canCheckLeft = left >= 0;
-            boolean canCheckRight = right <= end;
-
-            Integer middleScore = leaderboard.get(middle);
-            if (aliceScore == middleScore) {
-                return middle;
-            }
-
-            if (canCheckLeft && canCheckRight) {
-                Integer leftScore = leaderboard.get(left);
-                Integer rightScore = leaderboard.get(right);
-                if (aliceScore > leftScore && aliceScore < rightScore) {
-                    return left;
+    public static int binarySearchIterativeReversed(List<Integer> arr, int x) {
+        int start = 0;
+        int end = arr.size();
+        while (start < end) {
+            int mid = (start + end) / 2;
+            if (arr.get(mid) < x) {
+                end = mid;
+            } else {
+                if (arr.get(mid) <= x) {
+                    return mid;
                 }
+                start = mid + 1;
             }
-
-            if (canCheckRight && !canCheckLeft) {
-                Integer rightScore = leaderboard.get(right);
-                if (aliceScore < rightScore) {
-                    return middle;
-                }
-            }
-
-            if (canCheckLeft && !canCheckRight) {
-                Integer leftScore = leaderboard.get(left);
-                if (aliceScore > leftScore) {
-                    return middle;
-                }
-            }
-
-
         }
         return -1;
+    }
+
+    static int[] climbingLeaderboardEnhanced(int[] scores, int[] alice) {
+        List<Integer> leaderboard = Arrays.stream(scores).boxed().distinct().collect(Collectors.toList());
+        for (int i = 0; i < alice.length; i++) {
+            int boardIndex = binarySearchIterativeReversed(leaderboard, alice[i]);
+            if (boardIndex != -1) {
+                alice[i] = boardIndex + 1;
+            } else {
+                //check if score is biggest
+                if (alice[i] > leaderboard.get(0)) {
+                    alice[i] = 1;
+                }
+                //check if her score is lowest
+                else if (alice[i] < leaderboard.get(leaderboard.size() - 1)) {
+                    alice[i] = leaderboard.size() + 1;
+                }
+
+                for (int j = leaderboard.size() - 1; j >= 0; j--) {
+                    if (j - 1 >= 0 && leaderboard.get(j - 1) > alice[i])
+                        if (leaderboard.get(j) < alice[i]) {
+                            alice[i] = j + 1;
+                            break;
+                        }
+                }
+            }
+        }
+
+        return alice;
     }
 
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
@@ -114,7 +119,7 @@ public class ClimbingTheLeaderboard {
             alice[i] = aliceItem;
         }
 
-        int[] result = climbingLeaderboard(scores, alice);
+        int[] result = climbingLeaderboardEnhanced(scores, alice);
 
         for (int i = 0; i < result.length; i++) {
             System.out.println(result[i]);
