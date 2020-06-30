@@ -1,11 +1,24 @@
 package algorithms.implementation.medium;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
+/**
+ * URL: https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
+ * Example:
+ * Input:
+ * 6
+ * 100 90 90 80 75 60
+ * 5
+ * 50 65 77 90 102
+ * Output:
+ * 6
+ * 5
+ * 4
+ * 2
+ * 1
+ */
 public class ClimbingTheLeaderboard {
 
     public static int binarySearchIterativeReversed(int[] arr, int x) {
@@ -25,34 +38,6 @@ public class ClimbingTheLeaderboard {
         return -1;
     }
 
-    static int[] climbingLeaderboardEnhanced(int[] scores, int[] alice) {
-        scores = IntStream.of(scores).distinct().toArray();
-        int scoreIndex = scores.length - 1;
-        int aliceIndex = 0;
-
-        while (scoreIndex >= 0) {
-            if (alice[aliceIndex] < scores[scoreIndex]) {
-                alice[aliceIndex] = scoreIndex + 2;
-                aliceIndex++;
-            } else if (alice[aliceIndex] == scores[scoreIndex]) {
-                alice[aliceIndex] = scoreIndex + 1;
-                aliceIndex++;
-            } else if (alice[aliceIndex] > scores[scoreIndex]) {
-                //check if the next element is bigger that this
-                if (scoreIndex - 1 >= 0 && scores[scoreIndex -1] > alice[aliceIndex]) {
-                    alice[aliceIndex] = scoreIndex + 1;
-                    aliceIndex++;
-                } else if (scoreIndex == 0 && alice[aliceIndex] >= scores[scoreIndex]) {
-                    alice[aliceIndex] = 1;
-                    aliceIndex++;
-                }
-            }
-            scoreIndex--;
-        }
-
-        return alice;
-    }
-
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
         scores = IntStream.of(scores).distinct().toArray();
         int lastPosition = scores.length - 1;
@@ -64,10 +49,12 @@ public class ClimbingTheLeaderboard {
                 //check if score is biggest
                 if (alice[i] > scores[0]) {
                     alice[i] = 1;
+                    continue;
                 }
                 //check if her score is lowest
                 else if (alice[i] < scores[scores.length - 1]) {
                     alice[i] = scores.length + 1;
+                    continue;
                 }
 
                 for (int j = lastPosition; j >= 0; j--) {
@@ -80,23 +67,15 @@ public class ClimbingTheLeaderboard {
                 }
             }
 
-            if (alice[i] == 8275) {
-                System.out.println("here");
-            }
         }
 
         return alice;
     }
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) throws IOException {
-//        Scanner scanner = new Scanner("8\n" +
-//                "130 100 100 50 40 40 20 10\n" +
-//                "5\n" +
-//                "5 25 25 50 140");
-
-        Scanner scanner = new Scanner(new File("input07.txt"));
         int scoresCount = scanner.nextInt();
-
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         int[] scores = new int[scoresCount];
@@ -124,22 +103,17 @@ public class ClimbingTheLeaderboard {
 
         int[] result = climbingLeaderboard(scores, alice);
 
-        FileWriter fileWriter = new FileWriter("output.txt");
-        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < result.length; i++) {
-            stringBuilder.append(result[i]);
             System.out.println(result[i]);
 
             if (i != result.length - 1) {
-                stringBuilder.append("\n");
-                System.out.println("\n");
+                System.out.println();
             }
         }
-        stringBuilder.append("\n");
-        fileWriter.append(stringBuilder.toString());
-        fileWriter.flush();
-        fileWriter.close();
-        System.out.println("\n");
+
+        System.out.println();
+
         scanner.close();
     }
+
 }
