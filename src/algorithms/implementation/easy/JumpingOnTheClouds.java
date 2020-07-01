@@ -3,21 +3,32 @@ package algorithms.implementation.easy;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * URL: https://www.hackerrank.com/challenges/jumping-on-the-clouds-revisited/problem
+ * Example:
+ * Input:
+ * 8 2
+ * 0 0 1 0 0 1 1 0
+ * Output:
+ * 92
+ */
 public class JumpingOnTheClouds {
 
     static int jumpingOnClouds(int[] c, int k) {
-        for (int i = 0; i < c.length; i++) {
-            System.out.println(c[(i + k) % c.length]);
+        int pos = 0;
+        int energy = 100;
+        do {
+            if (c[pos] == 1) energy -= 2;
+            energy--;
+            pos = (pos + k) <= c.length - 1 ? pos + k : (pos + k) % c.length;
         }
-        return 0;
+        while (pos != 0);
+        return energy;
     }
 
-//    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner("8 2\n" +
-                "0 0 1 0 0 1 1 0");
-
         String[] nk = scanner.nextLine().split(" ");
 
         int n = Integer.parseInt(nk[0]);
