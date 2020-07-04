@@ -74,6 +74,15 @@ public class MatrixLayerRotation {
         printMatrix(matrix);
     }
 
+    static void printLayer(List<List<Integer>> matrix, int layer) {
+        int rows = matrix.size() - 1 - (layer - 1);
+        int cols = matrix.get(0).size() - 1 - (layer - 1);
+        int trueDepth = layer - 1;
+        for (int i = 0; i < ; i++) {
+
+        }
+    }
+
     static void printMatrix(List<List<Integer>> matrix) {
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix.get(i).size(); j++) {
@@ -106,7 +115,7 @@ public class MatrixLayerRotation {
                 "9 10 11 12\n" +
                 "13 14 15 16";
 
-        String input5 = "10 8 40\n" +
+        String input5 = "10 8 2\n" +
                 "9718805 60013003 5103628 85388216 21884498 38021292 73470430 31785927\n" +
                 "69999937 71783860 10329789 96382322 71055337 30247265 96087879 93754371\n" +
                 "79943507 75398396 38446081 34699742 1408833 51189 17741775 53195748\n" +
