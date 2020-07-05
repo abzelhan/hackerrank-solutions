@@ -7,10 +7,11 @@ public class FindDigits {
 
     // Complete the findDigits function below.
     static int findDigits(int n) {
+        int r = n;
         int count = 0;
-        while(n > 0){
-            if(n % 10 != 0 && n % (n % 10) == 0) count++;
-            n = n / 10;
+        while(r > 0){
+            if(r % 10 != 0 && n % (r % 10) == 0) count++;
+            r = r / 10;
         }
         return count;
     }
