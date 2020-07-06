@@ -65,6 +65,10 @@ public class MatrixLayerRotation {
 
         int depth = rows % 2 == 0 ? rows / 2 : columns / 2;
 
+        for (int i = 1; i <= depth; i++) {
+            printLayer(matrix, i);
+        }
+
         for (int i = 0; i < r; i++) {
             for (int j = 1; j <= depth; j++) {
                 rotateLayer(matrix, j);
@@ -74,13 +78,20 @@ public class MatrixLayerRotation {
         printMatrix(matrix);
     }
 
-    static void printLayer(List<List<Integer>> matrix, int layer) {
-        int rows = matrix.size() - 1 - (layer - 1);
-        int cols = matrix.get(0).size() - 1 - (layer - 1);
-        int trueDepth = layer - 1;
-        for (int i = 0; i < ; i++) {
+    static void printLayer(List<List<Integer>> matrix, int depth) {
 
+        int rows = matrix.size() - 1 - (depth - 1);
+        int cols = matrix.get(0).size() - 1 - (depth - 1);
+        int trueDepth = depth - 1;
+        for (int i = trueDepth; i <= rows; i++) {
+            for (int j = trueDepth; j <= cols ; j++) {
+                if(i == trueDepth || j == trueDepth || i == rows || j == cols)
+                    System.out.print(matrix.get(i).get(j) + " ");
+                System.out.print("   ");
+            }
+            System.out.println();
         }
+
     }
 
     static void printMatrix(List<List<Integer>> matrix) {
@@ -94,7 +105,7 @@ public class MatrixLayerRotation {
 
     public static void main(String[] args) throws IOException {
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String input = "5 4 14\n" +
+        String input = "5 4 1\n" +
                 "1 2 3 4\n" +
                 "7 8 9 10\n" +
                 "13 14 15 16\n" +
@@ -127,7 +138,7 @@ public class MatrixLayerRotation {
                 "55349226 10844931 25289229 90786953 22590518 54702481 71197978 50410021\n" +
                 "9392211 31297360 27353496 56239301 7071172 61983443 86544343 43779176";
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(input5.getBytes())));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(input4.getBytes())));
 
         String[] mnr = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
