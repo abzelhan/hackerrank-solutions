@@ -3,14 +3,23 @@ package algorithms.implementation.easy;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * URL: https://www.hackerrank.com/challenges/find-digits/problem
+ * Input:
+ * 2
+ * 12
+ * 1012
+ * Output:
+ * 2
+ * 3
+ */
 public class FindDigits {
 
-    // Complete the findDigits function below.
     static int findDigits(int n) {
         int r = n;
         int count = 0;
-        while(r > 0){
-            if(r % 10 != 0 && n % (r % 10) == 0) count++;
+        while (r > 0) {
+            if (r % 10 != 0 && n % (r % 10) == 0) count++;
             r = r / 10;
         }
         return count;
