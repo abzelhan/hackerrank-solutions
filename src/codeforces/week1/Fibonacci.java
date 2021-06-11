@@ -7,15 +7,22 @@ public class Fibonacci {
    public static void main(String[] args) {
       int n = new Scanner(System.in).nextInt();
 
-      double root5 = Math.sqrt(5);
-      double gr = ((1.0 + root5)) / 2.0;
-      double igr = 1.0 - gr;
+      long a = 1;
+      long b = 1;
+      long c = 0;
 
-      double value = (Math.pow(gr, n) - Math.pow(igr, n)) / root5;
-      System.out.println(value);
-      double result = Math.floor(value + 0.5);
+      for (int i = 0; i < n; i++) {
+         if (i == 1 || i == 0) {
+            c = 1;
+         } else {
+            c = (a + b);
+            a = b;
+            b = c;
+         }
+      }
 
-      System.out.println((long) result%10);
+      System.out.println(c);
+
    }
 
 }
