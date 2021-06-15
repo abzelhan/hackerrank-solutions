@@ -26,6 +26,7 @@ public class DivideArrayDSU {
             return a;
          }
 
+         //path compression
          parent[a] = findSet(parent[a]);
          return parent[a];
       }
@@ -75,7 +76,6 @@ public class DivideArrayDSU {
       long sum[] = new long[n];
       DSU dsu = new DSU(n);
       long curMaxSum = 0;
-
       for (int i = n - 1; i >= 0; i--) {
          sum[i] = curMaxSum;
          isValid[indexes[i]] = true;
