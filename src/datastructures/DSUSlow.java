@@ -29,7 +29,7 @@ class UnionFindLinear {
 
 }
 
-public class DSU {
+public class DSUSlow {
 
    public static void main(String[] args) {
       UnionFindLinear unionFindLinear = new UnionFindLinear(10);
