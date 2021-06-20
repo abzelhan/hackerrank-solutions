@@ -8,7 +8,6 @@ public class BinarySearch {
       while (left <= right) {
          int mid = (left + right) / 2;
 
-
          if (arr[mid] == key) {
             return mid;
          }
