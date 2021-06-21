@@ -21,7 +21,7 @@ public class SortLinkedList {
    }
 
    public static ListNode sortList(ListNode head) {
-      if (head.next == null) {
+      if (head == null) {
          return head;
       }
 
@@ -63,7 +63,7 @@ public class SortLinkedList {
       }
       l = null;
 
-      while (j <= right ) {
+      while (j <= right) {
          if (rightNode == null) {
             rightNode = new ListNode(node.val);
             r = rightNode;
@@ -76,7 +76,7 @@ public class SortLinkedList {
       }
       r = null;
 
-      return merge(sort(leftNode, left, mid),sort(rightNode, mid, right));
+      return merge(sort(leftNode, left, mid), sort(rightNode, mid, right));
    }
 
    public static ListNode merge(ListNode l1, ListNode l2) {
