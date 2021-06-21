@@ -1,4 +1,6 @@
-package leetcode.easy;
+package leetcode.medium;
+
+import java.util.Random;
 
 public class SortLinkedList {
 
@@ -134,6 +136,12 @@ public class SortLinkedList {
 
    public static void main(String[] args) {
       ListNode listNode = new ListNode();
+      ListNode l = listNode;
+      Random r = new Random();
+      for (int i = 0; i < 10000_000; i++) {
+         l.next = new ListNode(r.nextInt());
+         l = l.next;
+      }
 
       ListNode result = sortList(listNode);
 
