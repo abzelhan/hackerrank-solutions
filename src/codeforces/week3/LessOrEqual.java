@@ -3,6 +3,7 @@ package codeforces.week3;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class LessOrEqual {
@@ -135,7 +136,6 @@ public class LessOrEqual {
    public static Random random = new Random();
 
    public static void quickSort(int a[], int l, int r) {
-
       if (l >= r) {
          return;
       }
@@ -168,11 +168,11 @@ public class LessOrEqual {
       if (i < r) {
          quickSort(a, i, r);
       }
-
    }
 
    public static void main(String[] s) throws Exception {
       Reader scanner = new Reader();
+      PrintWriter writer = new PrintWriter(System.out);
       int n = scanner.nextInt();
       int k = scanner.nextInt();
 
@@ -186,11 +186,16 @@ public class LessOrEqual {
       quickSort(arr, 1, n);
 
       if (k + 1 > n) {
-         System.out.println(arr[k]);
+         writer.println(arr[k]);
+         writer.flush();
+         writer.close();
+         scanner.close();
          return;
       }
-      System.out.println((arr[k] != arr[k + 1]) ? arr[k] : -1);
-
+      writer.println((arr[k] != arr[k + 1]) ? arr[k] : -1);
+      writer.flush();
+      writer.close();
+      scanner.close();
    }
 
 }
