@@ -2,8 +2,6 @@ package leetcode.easy;
 
 public class IncreasingOrderSearchTree {
 
-
-  
   public class TreeNode {
       int val;
       TreeNode left;
