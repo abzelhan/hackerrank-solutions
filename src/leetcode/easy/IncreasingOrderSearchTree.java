@@ -27,14 +27,16 @@ public class IncreasingOrderSearchTree {
 
          increasingBST(root.left);
 
-         if(tree == null) {
-            tree = new TreeNode(root.val);
-            treePointer = tree;
-         } else {
-            treePointer.right =  new TreeNode(root.val);
-            treePointer = treePointer.right;
+         if(treePointer != null) {
+            treePointer.right = root;
+            root.left = null;
          }
 
+         if(tree == null) {
+            tree = root;
+         }
+
+         treePointer = root;
          increasingBST(root.right);
 
          return tree;
