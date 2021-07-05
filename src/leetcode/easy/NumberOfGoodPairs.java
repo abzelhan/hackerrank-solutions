@@ -1,5 +1,8 @@
 package leetcode.easy;
 
+import java.util.*;
+import java.util.Map.Entry;
+
 /**
  * https://leetcode.com/problems/number-of-good-pairs/
  *
@@ -8,16 +11,19 @@ package leetcode.easy;
 public class NumberOfGoodPairs {
 
    public static int numIdenticalPairs(int[] nums) {
-      int counter = 0;
-      for (int i = 0; i < nums.length - 1; i++) {
-         for (int j = i + 1; j < nums.length; j++) {
-            if (nums[i] == nums[j]) {
-               counter++;
-            }
+      Map<Integer, Integer> dictionary = new HashMap<>();
+      int totalPairs = 0;
+      for(int i = 0; i < nums.length; i++) {
+         if (!dictionary.containsKey(nums[i])) {
+            dictionary.put(nums[i], 1);
+         } else {
+            Integer occurences = dictionary.get(nums[i]);
+            totalPairs += occurences;
+            dictionary.put(nums[i], occurences + 1);
          }
-
       }
-      return counter;
+
+      return totalPairs;
    }
 
    public static void main(String[] args) {

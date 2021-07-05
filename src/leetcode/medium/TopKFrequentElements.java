@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * https://leetcode.com/problems/top-k-frequent-elements
  * Medium
  * Solved by Max Heap Implementation with priority queue
- * Time complexity O(n) + O(log n) + O(k * log n) ??? Prove this later 
+ * Time complexity O(n) + O(log n) + O(k * log n) ??? Prove this later
  */
 public class TopKFrequentElements {
 
