@@ -1,9 +1,9 @@
 package leetcode.medium;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
-import java.util.Arrays;
-
-public class KthLargestElementInArray {
+public class FindKthLargestXORCoordinateValue {
 
    public static int partition(int[] arr, int l, int r) {
       int pivotIndex = l;
@@ -61,12 +61,31 @@ public class KthLargestElementInArray {
       return kElement;
    }
 
-   public static void main(String[] args) {
-      int[] arr = {5, 4, 3, 2, 1, 8, 7, 6};
-      int k = 2;
+   public static int kthLargestValue(int[][] arr, int kVal) {
+      int[][] xorMatrix = new int[arr.length + 1][arr[0].length + 1];
+      int xorArr[] = new int[arr.length * arr[0].length];
+      int idx = 0;
+      for (int i = 1; i < xorMatrix.length; i++) {
+         for (int j = 1; j < xorMatrix[i].length; j++) {
+            xorMatrix[i][j] = arr[i - 1][j - 1]
+                ^ xorMatrix[i - 1][j - 1]
+                ^ xorMatrix[i - 1][j]
+                ^ xorMatrix[i][j - 1];
 
-      System.out.println(findKthLargest(arr, k));
-      System.out.println(Arrays.toString(arr));
+            xorArr[idx++] = xorMatrix[i][j];
+         }
+      }
+      return findKthLargest(xorArr, kVal);
+   }
+
+   public static void main(String[] args) {
+
+      int[][] arr = {
+          {5, 2},
+          {1, 6},
+      };
+
+      System.out.println(kthLargestValue(arr, 3));
    }
 
 }
