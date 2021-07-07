@@ -1,24 +1,28 @@
 package leetcode.easy;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class ContainsDuplicateII {
 
    public static boolean containsNearbyDuplicate(int[] nums, int k) {
-      HashMap<Integer, Integer> map = new HashMap<>();
 
-      for (int i = 0; i < nums.length; i++) {
-         if (map.containsKey(nums[i])) {
-            Integer index = map.get(nums[i]);
+      HashSet<Integer> set = new HashSet<>();
+      int i = 0, j = 0;
 
-            if (Math.abs(i - index) <= k) {
-               return true;
-            }
+      while (j <= k && j < nums.length) {
+         int element = nums[j++];
 
+         if (!set.add(element)) {
+            return true;
          }
+      }
 
-         map.put(nums[i], i);
-
+      while (j < nums.length) {
+         set.remove(nums[i++]);
+         int element = nums[j++];
+         if (!set.add(element)) {
+            return true;
+         }
       }
 
       return false;
