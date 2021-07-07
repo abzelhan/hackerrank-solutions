@@ -1,6 +1,7 @@
 package leetcode.hard;
 
-import java.util.Map.Entry;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class MergeKSortedLists {
@@ -23,48 +24,34 @@ public class MergeKSortedLists {
       }
    }
 
-   static TreeMap<Integer, Integer> map;
-
    public static ListNode mergeKLists(ListNode[] lists) {
-      for (int i = 0; i < lists.length; i++) {
-         ListNode node = lists[i];
+      PriorityQueue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
+         @Override
+         public int compare(ListNode o1, ListNode o2) {
+            return Integer.compare(o1.val, o2.val);
+         }
+      });
 
+      for (ListNode node : lists) {
          while (node != null) {
-            int val = node.val;
-            Integer counter = 1;
-            if (map.containsKey(val)) {
-               counter = map.get(val);
-               map.put(val, ++counter);
-            } else {
-               map.put(val, counter);
-            }
+            queue.add(node);
             node = node.next;
          }
       }
 
-      ListNode first = null;
-
-      for (Entry<Integer, Integer> entry : map.entrySet()) {
-         for (int i = 0; i < entry.getValue(); i++) {
-            if (first == null) {
-               first = new ListNode();
-               first.val = entry.getKey();
-               continue;
-            }
-
-            ListNode current = first;
-            while (current.next != null) {
-               current = current.next;
-            }
-            current.next = new ListNode(entry.getKey());
-         }
+      ListNode head = new ListNode();
+      ListNode node = head;
+      while (!queue.isEmpty()) {
+         ListNode sortedNode = queue.poll();
+         sortedNode.next = null;
+         node.next = sortedNode;
+         node = node.next;
       }
 
-      return first;
+      return head.next;
    }
 
    public static void main(String[] args) {
-      map = new TreeMap<>(Integer::compareTo);
       ListNode[] listNodes = new ListNode[3];
       listNodes[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
       listNodes[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
@@ -72,7 +59,6 @@ public class MergeKSortedLists {
 
       ListNode listNode = mergeKLists(listNodes);
 
-      System.out.println(listNode);
    }
 
 }
