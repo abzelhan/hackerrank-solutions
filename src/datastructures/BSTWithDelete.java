@@ -153,6 +153,7 @@ public class BSTWithDelete<Key extends Comparable, Value> {
          if (min.parent == node) {
             transplant(node, min);
             min.left = node.left;
+            min.left.parent = min;
             node.left = null;
          } else {
             Node nodeSuccessor = min;
@@ -161,7 +162,9 @@ public class BSTWithDelete<Key extends Comparable, Value> {
             nodeSuccessor.right = null;
             transplant(node, nodeSuccessor);
             nodeSuccessor.left = node.left;
+            nodeSuccessor.left.parent = nodeSuccessor;
             nodeSuccessor.right = node.right;
+            nodeSuccessor.right.parent = nodeSuccessor;
             node.left = null;
             node.right = null;
             System.out.println();
