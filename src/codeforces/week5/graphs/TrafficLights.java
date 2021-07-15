@@ -1,4 +1,4 @@
-package codeforces.week5;
+package codeforces.week5.graphs;
 
 import java.io.PrintWriter;
 import java.util.LinkedList;
