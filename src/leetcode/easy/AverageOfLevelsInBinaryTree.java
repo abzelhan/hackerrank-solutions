@@ -71,7 +71,7 @@ public class AverageOfLevelsInBinaryTree {
          System.out.println(aDouble);
       }
 
-    
+
 
    }
 

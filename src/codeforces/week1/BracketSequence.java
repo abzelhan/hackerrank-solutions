@@ -26,7 +26,7 @@ public class BracketSequence {
    }
 
    public static void main(String[] args) {
-      Scanner scanner = new Scanner("((()");
+      Scanner scanner = new Scanner("((([])");
       String word = scanner.nextLine();
 
       int[] prefixSums = new int[word.length()];

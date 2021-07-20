@@ -10,7 +10,7 @@ public class StorageOptimization {
 
    public static void main (String[] args) throws java.lang.Exception
    {
-      String s = "|**|*|*";
+      String s = "||**|*|*";
       //
       int maxLeftBound[] = new int [s.length()];
       int maxIndex = -1;
@@ -40,8 +40,9 @@ public class StorageOptimization {
       // q => O(1)
       // ||******|||
       // ***||*
-      int startIndex = 1, endIndex = 6;
+      int startIndex = 1, endIndex = 8;
       startIndex--; endIndex--;
+      System.out.println(s.substring(startIndex, endIndex));
       int l = minRightBound[startIndex], r = maxLeftBound[endIndex];
       System.out.println(l + " " + r);
       if (l > endIndex || r < startIndex || r == l) {

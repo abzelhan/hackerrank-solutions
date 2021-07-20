@@ -35,6 +35,7 @@ public class BinaryTreePaths {
       if(node.left == null && node.right == null) {
 
          StringBuilder  str = new StringBuilder();
+
          int counter = 1;
          for (TreeNode treeNode : stack) {
             str.append(String.valueOf(treeNode.val));

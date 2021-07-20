@@ -5,7 +5,7 @@ import java.util.Stack;
 public class SumOfRootToLeafBinaryNumbers {
 
 
-   public class TreeNode {
+   private static class TreeNode {
 
       int val;
       TreeNode left;

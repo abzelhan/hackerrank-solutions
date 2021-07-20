@@ -88,12 +88,12 @@ public class MinCostToConnectAllPoints {
          }
       }
 
-      DSU dsu = new DSU(edges.size());
+      DSU dsu = new DSU(points.length);
 
       Collections.sort(edges);
 
       int minCost = 0;
-      int connectedVertices = 0;
+      int connectedVertices = 1;
       for (int i = 0; i < edges.size(); i++) {
          Edge edge = edges.get(i);
 
@@ -101,9 +101,10 @@ public class MinCostToConnectAllPoints {
             dsu.union(edge.w, edge.v);
             minCost += edge.weight;
             connectedVertices++;
-            if (connectedVertices == points.length) {
-               break;
-            }
+         }
+
+         if (connectedVertices == points.length) {
+            break;
          }
       }
 

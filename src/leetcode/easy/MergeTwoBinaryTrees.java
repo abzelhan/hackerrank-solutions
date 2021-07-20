@@ -2,7 +2,7 @@ package leetcode.easy;
 
 public class MergeTwoBinaryTrees {
 
-   public class TreeNode {
+   private static class TreeNode {
 
       int val;
       TreeNode left;
