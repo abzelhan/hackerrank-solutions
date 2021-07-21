@@ -4,7 +4,7 @@ public class SumOfLeftLeaves {
 
 
 
-    public class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -16,7 +16,7 @@ public class SumOfLeftLeaves {
             this.right = right;
         }
     }
-   
+
 
    public int sumOfLeftLeaves(TreeNode node, TreeNode parent) {
       if(node == null) {
