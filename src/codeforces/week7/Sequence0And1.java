@@ -17,7 +17,7 @@ public class Sequence0And1 {
          dp[i][1] = dp[i-1][0];
       }
 
-      System.out.println(dp[n][0] + dp[n][1]);
+      System.out.println((long)Math.pow(2, n) - (dp[n][0] + dp[n][1]));
    }
 
 }
