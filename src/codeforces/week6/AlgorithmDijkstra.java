@@ -4,38 +4,25 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
-import java.util.TreeSet;
+import java.util.PriorityQueue;
 
 public class AlgorithmDijkstra {
 
-   private static class Edge {
+   private static class Edge implements Comparable<Edge> {
 
       int to, weight;
 
-      public Edge(int weight, int to) {
+      public Edge(int to, int weight) {
          this.to = to;
          this.weight = weight;
       }
 
       @Override
-      public boolean equals(Object o) {
-         if (this == o) {
-            return true;
-         }
-         if (o == null || getClass() != o.getClass()) {
-            return false;
-         }
-         Edge edge = (Edge) o;
-         return to == edge.to && weight == edge.weight;
-      }
-
-      @Override
-      public int hashCode() {
-         return Objects.hash(to, weight);
+      public int compareTo(Edge o) {
+         return Integer.compare(weight, o.weight);
       }
    }
 
@@ -174,62 +161,71 @@ public class AlgorithmDijkstra {
       printWriter.print(" ");
    }
 
+
+   private static int add(int x, int y)
+   {
+      if (y == 0)
+         return x;
+      else
+         return add(x ^ y, (x & y) << 1);
+   }
+
    public static void main(String[] args) throws Exception {
       Reader scanner = new Reader();
       int v = scanner.nextInt();
       int e = scanner.nextInt();
 
-      List<Edge>[] graph = new LinkedList[v];
+      List<Edge>[] graph = new ArrayList[v];
       int[] distance = new int[v];
       int[] pathTo = new int[v];
 
-      for (int i = 0; i < v; i++) {
-         graph[i] = new LinkedList<>();
+      for (int i = 0; i < v; ++i) {
+         graph[i] = new ArrayList<>();
          distance[i] = Integer.MAX_VALUE;
       }
 
-      for (int i = 0; i < e; i++) {
+      for (int i = 0; i < e; ++i) {
          int from = scanner.nextInt() - 1;
          int to = scanner.nextInt() - 1;
          int weight = scanner.nextInt();
 
-         graph[from].add(new Edge(weight, to));
-         graph[to].add(new Edge(weight, from));
+         graph[from].add(new Edge(to, weight));
+         graph[to].add(new Edge(from, weight));
       }
 
       distance[0] = 0;
       pathTo[0] = -1;
 
-      TreeSet<Edge> set = new TreeSet<Edge>(new Comparator<Edge>() {
-         @Override
-         public int compare(Edge o1, Edge o2) {
-            return Integer.compare(o1.weight, o2.weight);
-         }
-      });
+      PriorityQueue<Edge> queue = new PriorityQueue<>();
 
       Edge startEdge = new Edge(0, 0);
 
-      set.add(startEdge);
+      queue.add(startEdge);
 
-      while (!set.isEmpty()) {
-         Edge smallest = set.first();
-         set.remove(smallest);
+      while (!queue.isEmpty()) {
+         Edge smallest = queue.poll();
          int vertex = smallest.to;
 
+         if (distance[vertex] < smallest.weight) {
+            continue;
+         }
+
          int size = graph[vertex].size();
-         for (int i = 0; i < size; i++) {
+         for (int i = 0; i < size; ++i) {
             Edge edge = graph[vertex].get(i);
 
-            if (distance[edge.to] > distance[vertex] + edge.weight) {
-               Edge oldEdge = new Edge(distance[edge.to], edge.to);
-               if (set.contains(oldEdge)) {
-                  set.remove(oldEdge);
-               }
-               distance[edge.to] = distance[vertex] + edge.weight;
+            int newDistance = add(distance[vertex], edge.weight);
+
+            if (distance[edge.to] > newDistance) {
+
+               distance[edge.to] = newDistance;
+
                pathTo[edge.to] = vertex;
-               set.add(new Edge(distance[edge.to], edge.to));
+               queue.add(new Edge(edge.to, distance[edge.to]));
             }
          }
+
+         graph[vertex].remove(smallest);
       }
 
       if (distance[v - 1] == Integer.MAX_VALUE) {
@@ -237,31 +233,28 @@ public class AlgorithmDijkstra {
          return;
       }
 
-      PrintWriter printWriter = new PrintWriter(System.out);
+      LinkedList<Integer> path = new LinkedList<>();
 
-      printPath(pathTo, v - 1, printWriter);
-      printWriter.print(v);
-
-      printWriter.flush();
-
-      /*Stack<Integer> path = new Stack<>();
       int pathIndex = v - 1;
-      while (true) {
 
-         path.add(pathIndex + 1);
-         if (pathIndex == pathTo[pathIndex]) {
+
+      while (true) {
+         if (pathIndex == -1) {
             break;
          }
+         path.addFirst(add(pathIndex, 1));
+
          pathIndex = pathTo[pathIndex];
       }
 
       PrintWriter printWriter = new PrintWriter(System.out);
 
-      while (!path.isEmpty()) {
-         printWriter.print(path.pop() + " ");
+      for (Integer vertex : path) {
+         printWriter.print(vertex);
+         printWriter.append(" ");
       }
 
-      printWriter.flush();*/
+      printWriter.flush();
 
    }
 
