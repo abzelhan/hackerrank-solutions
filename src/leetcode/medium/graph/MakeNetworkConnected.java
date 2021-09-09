@@ -1,5 +1,8 @@
 package leetcode.medium.graph;
 
+import java.lang.ref.PhantomReference;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +23,13 @@ public class MakeNetworkConnected {
       if (connections.length < n - 1) {
          return -1;
       }
+      Arrays
+          .sort(connections, Comparator.<int[]>comparingInt(o -> o[0]).thenComparingInt(o -> o[1]));
+
+      for (int[] connection : connections) {
+         System.out.println(Arrays.toString(connection));
+      }
+
 
       List<Integer>[] graph = new List[n];
       boolean[] visited = new boolean[n];
