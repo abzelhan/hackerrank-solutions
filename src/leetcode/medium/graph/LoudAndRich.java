@@ -24,6 +24,9 @@ public class LoudAndRich {
         if(quietness[current].quietness > quietness[from.vertex].quietness) {
             quietness[current] = quietness[from.vertex];
         }
+        if(quietness[current].quietness > quietness[from.vertex].quietness) {
+            quietness[current] = quietness[from.vertex];
+        }
         for (Integer child : graph[current]) {
             if (!visited.contains(child)) {
                 dfs(child, from, graph, visited, quietness);
